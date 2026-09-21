@@ -1,10 +1,10 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Footer from '../../components/Footer.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
-import Header from '../../components/Header.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
 import { getCollection } from 'astro:content';
-import { SITE_TITLE } from '../../consts';
+import { SITE_TITLE } from '../consts';
 
 const posts = (await getCollection('blog'))
 	.filter((post) => !post.data.draft)
@@ -55,7 +55,7 @@ const BASE_URL = import.meta.env.BASE_URL;
 				{
 					posts.map((post) => (
 						<li>
-							<a href={`${BASE_URL}blog/${post.id}/`}>
+							<a href={`${BASE_URL}${post.id}/`}>
 								<p class="date">
 									<FormattedDate date={post.data.pubDate} />
 								</p>

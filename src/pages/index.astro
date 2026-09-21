@@ -57,7 +57,7 @@ const BASE_URL = import.meta.env.BASE_URL;
 			<section class="intro">
 				<h1>{SITE_TITLE}</h1>
 				<p>{SITE_DESCRIPTION}</p>
-				<p><a href={`${BASE_URL}blog/`}>Ver todas las entradas →</a></p>
+				<p><a href={`${BASE_URL}archivo/`}>Ver todas las entradas →</a></p>
 			</section>
 
 			<h2>Escribiendo</h2>
@@ -65,7 +65,7 @@ const BASE_URL = import.meta.env.BASE_URL;
 				{
 					posts.map((post) => (
 						<li>
-							<a href={`${BASE_URL}blog/${post.id}/`}>
+							<a href={`${BASE_URL}${post.id}/`}>
 								<p class="date">
 									<FormattedDate date={post.data.pubDate} />
 								</p>
