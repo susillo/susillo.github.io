@@ -17,66 +17,80 @@ const BASE_URL = import.meta.env.BASE_URL;
 <html lang="es">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			.intro {
-				max-width: 640px;
-			}
-			ul {
-				list-style: none;
-				padding: 0;
-				margin: 0;
-			}
-			li {
-				margin-bottom: 1.6em;
-			}
-			li .date {
-				color: rgb(var(--gray));
-				font-size: 0.8em;
-				margin: 0;
-			}
-			li .title {
-				margin: 0.15em 0;
-				font-size: 1.25em;
-			}
-			li a {
-				text-decoration: none;
-			}
-			li a:hover .title {
-				text-decoration: underline;
-			}
-			li .desc {
-				margin: 0;
-				color: rgb(var(--gray));
-				font-size: 0.95em;
-			}
-		</style>
 	</head>
-	<body>
+	<body class="mono">
 		<Header />
 		<main>
-			<section class="intro">
-				<h1>{SITE_TITLE}</h1>
-				<p>{SITE_DESCRIPTION}</p>
-				<p><a href={`${BASE_URL}archivo/`}>Ver todas las entradas →</a></p>
+			<section class="hero">
+				<p class="hero-kicker">DE LOS PÍXELES A LA IA...</p>
+				<h1 class="hero-title">Aprovechar cada cambio para llegar un poco más lejos.</h1>
+				<p class="hero-lede">
+					mis notas y pensamientos sobre tecnología, ciberseguridad y salud; de cómo intento aprender de cada oportunidad que se me presenta cada día para sacarle el máximo partido y seguir adaptándome.
+				</p>
 			</section>
 
-			<h2>Escribiendo</h2>
-			<ul>
-				{
-					posts.map((post) => (
-						<li>
-							<a href={`${BASE_URL}${post.id}/`}>
-								<p class="date">
-									<FormattedDate date={post.data.pubDate} />
-								</p>
-								<p class="title">{post.data.title}</p>
-								<p class="desc">{post.data.description}</p>
-							</a>
-						</li>
-					))
-				}
-			</ul>
+			<section class="posts">
+				<ul class="post-list">
+					{
+						posts.map((post) => (
+							<li class="post-item">
+								<a href={`${BASE_URL}${post.id}/`} class="post-link">
+									<span class="post-date">
+										<FormattedDate date={post.data.pubDate} />
+									</span>
+									<div class="post-content">
+										<h2 class="post-title">{post.data.title}</h2>
+										<p class="post-desc">{post.data.description}</p>
+									</div>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	main {
+		display: flex;
+		flex-direction: column;
+		gap: var(--section-gap);
+	}
+	.hero {
+		display: flex;
+		flex-direction: column;
+		gap: 18px;
+	}
+	.hero-kicker {
+		margin: 0;
+		font-family: var(--font-mono);
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 0.25em;
+		color: var(--teal);
+	}
+	.hero-title {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: 52px;
+		font-weight: 800;
+		line-height: 1.08;
+		color: var(--paper);
+	}
+	.hero-lede {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: 16px;
+		line-height: 1.5;
+		color: var(--muted);
+	}
+
+	@media (max-width: 700px) {
+		.hero-title {
+			font-size: 34px;
+		}
+	}
+</style>

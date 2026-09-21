@@ -1,43 +1,151 @@
 ---
-import { SITE_TITLE } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import HeaderLink from './HeaderLink.astro';
+import Logo from './Logo.astro';
 ---
 
 <header>
 	<nav>
-		<h2><a href={import.meta.env.BASE_URL}>{SITE_TITLE}</a></h2>
-		<div class="internal-links">
-			<HeaderLink href="/">Inicio</HeaderLink>
-			<HeaderLink href="/archivo/">Archivo</HeaderLink>
-			<HeaderLink href="/about/">Sobre mí</HeaderLink>
+		<a href={import.meta.env.BASE_URL} class="brand">
+			<Logo size={32} class="brand-logo" />
+			<span class="brand-text">
+				<span class="brand-name">{SITE_TITLE}</span>
+				<span class="brand-tag">{SITE_DESCRIPTION}</span>
+			</span>
+		</a>
+		<div class="spacer"></div>
+		<button class="search" aria-label="Buscar">
+			<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+		</button>
+		<div class="menu">
+			<button class="menu-btn" aria-label="Menú" aria-haspopup="true">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</button>
+			<div class="dropdown">
+				<HeaderLink href="/">Inicio</HeaderLink>
+				<HeaderLink href="/archivo/">Archivo</HeaderLink>
+				<HeaderLink href="/about/">Sobre mí</HeaderLink>
+			</div>
 		</div>
 	</nav>
 </header>
+
 <style>
 	header {
-		margin: 0;
-		padding: 0 1em;
-	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
-
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
+		box-sizing: border-box;
+		width: 100%;
+		max-width: var(--frame);
+		margin: 0 auto;
+		padding: var(--pad-y) var(--pad-x) 0;
 	}
 	nav {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		gap: 18px;
 	}
-	nav a {
-		padding: 1em 0.5em;
-		color: var(--black);
+	.brand {
+		display: flex;
+		align-items: center;
+		gap: 18px;
 		text-decoration: none;
 	}
-	nav a.active {
-		text-decoration: none;
+	.brand-logo {
+		display: block;
+		flex: none;
+	}
+	.brand-text {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+	.brand-name {
+		font-family: var(--font-mono);
+		font-weight: 700;
+		font-size: 17px;
+		line-height: 1.1;
+		color: var(--paper);
+	}
+	.brand-tag {
+		font-family: var(--font-mono);
+		font-weight: 400;
+		font-size: 10px;
+		color: var(--muted-2);
+	}
+	.spacer {
+		flex: 1;
+	}
+	.search {
+		background: none;
+		border: none;
+		color: var(--muted);
+		cursor: pointer;
+		padding: 0;
+		display: flex;
+		align-items: center;
+	}
+	.search:hover {
+		color: var(--lime);
+	}
+	.menu {
+		position: relative;
+	}
+	.menu-btn {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 4px;
+		width: 36px;
+		height: 36px;
+		padding: 0;
+		background: none;
+		border: none;
+		border-radius: 8px;
+		color: var(--muted);
+		cursor: pointer;
+	}
+	.menu-btn .bar {
+		display: block;
+		width: 18px;
+		height: 2px;
+		border-radius: 1px;
+		background: currentColor;
+	}
+	.menu:hover .menu-btn,
+	.menu:focus-within .menu-btn {
+		color: var(--lime);
+	}
+	.dropdown {
+		position: absolute;
+		right: 0;
+		top: calc(100% + 10px);
+		z-index: 50;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 14px;
+		min-width: 170px;
+		padding: 16px;
+		background: var(--ink-2);
+		border: 1px solid var(--line);
+		border-radius: 12px;
+		box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(-6px);
+		transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+	}
+	.menu:hover .dropdown,
+	.menu:focus-within .dropdown {
+		opacity: 1;
+		visibility: visible;
+		transform: none;
+	}
+	@media (max-width: 700px) {
+		.brand {
+			gap: 12px;
+		}
 	}
 </style>

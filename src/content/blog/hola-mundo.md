@@ -2,6 +2,7 @@
 title: "Hola mundo"
 description: "Primera nota del cuaderno: de qué va esto y cómo escribo aquí."
 pubDate: "2026-09-21"
+tags: ["astro", "blog"]
 ---
 
 Este es mi cuaderno público. Lo uso como libreta: apunto qué estoy haciendo, qué aprendo cada día y cosas de tecnología que me llaman la atención.

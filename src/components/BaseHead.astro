@@ -22,6 +22,7 @@ const { title, description, image } = Astro.props;
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href={`${BASE_URL}favicon.svg`} />
 <link rel="icon" href={`${BASE_URL}favicon.ico`} />
+<link rel="apple-touch-icon" href={`${BASE_URL}apple-touch-icon.png`} />
 <link rel="sitemap" href={`${BASE_URL}sitemap-index.xml`} />
 <link
 	rel="alternate"
@@ -30,6 +31,14 @@ const { title, description, image } = Astro.props;
 	href={new URL(`${BASE_URL}rss.xml`, Astro.site)}
 />
 <meta name="generator" content={Astro.generator} />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+	href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+	rel="stylesheet"
+/>
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
